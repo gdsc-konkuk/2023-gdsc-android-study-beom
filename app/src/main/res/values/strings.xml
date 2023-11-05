@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GDSC_assign</string>
+    <string name="tv_my_record">나의 기록</string>
+    <string name="my_shcool_email">cjja00@konkuk.ac.kr</string>
+    <string name="my_name">이승범</string>
+    <string name="top_my_page">마이페이지</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
