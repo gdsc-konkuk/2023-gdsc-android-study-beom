@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gdsc_assign.databinding.ListItemBinding
 
 class ToDoAdaptor (var todos : ArrayList<ToDo>) : RecyclerView.Adapter<ToDoAdaptor.ViewHolder>(){
-
-
     inner class ViewHolder(
         val binding: ListItemBinding
     ): RecyclerView.ViewHolder(binding.root){
         fun bind(data : ToDo){
             binding.apply {
-                tvNumber.text = data.num.toString()
+                tvNumber.text = data.writeday
                 tvTodoText.text = data.body
             }
         }
