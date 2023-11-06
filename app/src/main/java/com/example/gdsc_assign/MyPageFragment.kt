@@ -1,27 +1,55 @@
 package com.example.gdsc_assign
 
+import android.app.Activity
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.gdsc_assign.databinding.FragmentMyPageBinding
 
 class MyPageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+   private lateinit var binding : FragmentMyPageBinding
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    private lateinit var userName:String
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        sharedPreferences = requireContext().getSharedPreferences("nickname1", MODE_PRIVATE)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page, container, false)
+        binding = FragmentMyPageBinding.inflate(layoutInflater, container, false)
+        val nickname = sharedPreferences.getString("mypagename", "fail")
+        if (nickname != null) {
+            binding.tvMyName.text = nickname.toString()
+        } else {
+            binding.tvMyName.text = "바보"
+        }
+        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                // 다시 돌아왔을 때 할 거
+                val nickname = it.data?.getStringExtra("nickname")
+                binding.tvMyName.text = nickname
+            }
+        }
+        binding.apply {
+            imgBtnInfoChange.setOnClickListener {
+                val intent = Intent(requireContext(), EditActivity::class.java) //액티비티 넘어갈때 사용
+                //                startActivity(intent)
+                intent.putExtra("nickname", tvMyName.text)
+                launcher.launch(intent)
+            }
+        }
+        return binding.root
     }
 }
+

@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!--coordinate쓰지말고 fragment container 사용-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+        <data>
 
-        <FrameLayout
+        </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/frame_layout"/>
+            tools:context=".presentation.Mainactivity">
 
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bottom_app_bar"
-            android:background="@color/white"
-            app:fabCradleMargin="10dp"
-            android:layout_gravity="bottom"
-            app:fabCradleRoundedCornerRadius="50dp">
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcv_main"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout="@layout/fragment_home" />
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:id="@+id/bottom_navigation_view"
                 app:labelVisibilityMode="labeled"
                 app:itemIconTint="@color/bottom_item_color"
                 app:itemTextColor="@color/bottom_item_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:menu="@menu/my_navigation_item"/>
 
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/main_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="34dp"
-            android:src="@drawable/img_item_add"
+            android:layout_marginBottom="40dp"
             android:background="@color/white"
-            android:elevation="0dp"
-            app:layout_anchor="@id/bottom_navigation_view"
-            app:layout_anchorGravity="center_horizontal"
+            android:src="@drawable/img_item_add"
             app:fabCustomSize="52dp"
-            app:maxImageSize="40dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:maxImageSize="40dp" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>
 

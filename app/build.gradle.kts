@@ -1,3 +1,8 @@
+buildscript {
+    repositories {
+        google()
+    }
+}
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -27,7 +32,7 @@ android {
         }
     }
     buildFeatures {
-        viewBinding = true
+        dataBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
