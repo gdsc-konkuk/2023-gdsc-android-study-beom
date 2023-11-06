@@ -14,25 +14,22 @@ import com.example.gdsc_assign.databinding.FragmentMyPageBinding
 
 class MyPageFragment : Fragment() {
    private lateinit var binding : FragmentMyPageBinding
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
-    private lateinit var userName:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedPreferences = requireContext().getSharedPreferences("nickname1", MODE_PRIVATE)
+
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMyPageBinding.inflate(layoutInflater, container, false)
-        val nickname = sharedPreferences.getString("mypagename", "fail")
+        val nickname = binding.tvMyName.text
         if (nickname != null) {
             binding.tvMyName.text = nickname.toString()
         } else {
-            binding.tvMyName.text = "바보"
+            binding.tvMyName.text = "허헛~"
         }
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {

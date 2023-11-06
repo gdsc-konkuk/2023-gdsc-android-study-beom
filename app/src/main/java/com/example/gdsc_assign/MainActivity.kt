@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fcv_main, HomeFragment())
+                .commit()
         }
         click()
     }
@@ -31,12 +32,12 @@ class MainActivity : AppCompatActivity() {
     }
     private fun click() {
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
+            item -> when (item.itemId) {
                 R.id.it_home -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.fcv_main, HomeFragment())
+                    .replace(R.id.fcv_main, HomeFragment()).commit()
 
                 R.id.it_my_page -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.fcv_main, MyPageFragment())
+                    .replace(R.id.fcv_main, MyPageFragment()).commit()
 
             }
             true
