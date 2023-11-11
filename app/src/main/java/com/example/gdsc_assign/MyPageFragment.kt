@@ -10,42 +10,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.gdsc_assign.databinding.FragmentMyPageBinding
 
 class MyPageFragment : Fragment() {
    private lateinit var binding : FragmentMyPageBinding
+   private val viewModel : NameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+// 현우햄 왈 oncreate 는 fragment에서 안건드리는게 좋다!
     }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMyPageBinding.inflate(layoutInflater, container, false)
         val nickname = binding.tvMyName.text
         if (nickname != null) {
             binding.tvMyName.text = nickname.toString()
         } else {
-            binding.tvMyName.text = "허헛~"
+            binding.tvMyName.text = "이승범"
         }
-        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                // 다시 돌아왔을 때 할 거
-                val nickname = it.data?.getStringExtra("nickname")
-                binding.tvMyName.text = nickname
-            }
+        //observer 사용파트
+        val nameObserver = Observer<String> { newName ->
+            binding.tvMyName.text = newName
         }
+
+        viewModel.currentName.observe(viewLifecycleOwner, nameObserver)
+        //
         binding.apply {
             imgBtnInfoChange.setOnClickListener {
                 val intent = Intent(requireContext(), EditActivity::class.java) //액티비티 넘어갈때 사용
                 //                startActivity(intent)
                 intent.putExtra("nickname", tvMyName.text)
-                launcher.launch(intent)
+                startActivity(intent)
             }
-        }
+        } // editactivity로 넘어가는 부분
         return binding.root
     }
 }
