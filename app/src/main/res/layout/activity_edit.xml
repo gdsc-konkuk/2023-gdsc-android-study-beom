@@ -94,15 +94,16 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
+
         <EditText
             android:id="@+id/et_nickname"
-            android:layout_width="wrap_content"
+            android:layout_width="0.8in"
             android:layout_height="wrap_content"
-            android:maxLines="1"
+            android:layout_marginEnd="44dp"
             android:inputType="text"
             android:maxLength="7"
-            android:text="노력하는중"
-            android:layout_marginEnd="44dp"/>
+            android:maxLines="1"
+            android:text="노력하는중" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ly_profile_picture"

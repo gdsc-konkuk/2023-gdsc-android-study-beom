@@ -42,7 +42,7 @@ class EditActivity : AppCompatActivity() {
                 } else {
                     tvSecondName.text = etNickname.text.trim()
                     val changeName = tvSecondName.text
-                    viewModel.currentName.
+                    viewModel._currentName.postValue(changeName.toString())
                     finish()
                 }
             }
