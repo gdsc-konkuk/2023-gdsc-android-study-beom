@@ -77,10 +77,11 @@
             android:background="@drawable/img_rectangle">
             <!--아..  >이게 있었구나..자살하자 승범아 -->
           <TextView
+              android:id="@+id/tv_current_complete_todo"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
 
-              android:text="완료 투두 : 2개"
+              android:text="완료 투두 : 0개"
               android:textSize="20sp"
               android:textStyle="bold"
               app:layout_constraintStart_toStartOf="parent"

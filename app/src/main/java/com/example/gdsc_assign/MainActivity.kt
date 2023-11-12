@@ -12,6 +12,8 @@ import com.example.gdsc_assign.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,16 +26,11 @@ class MainActivity : AppCompatActivity() {
         click()
     }
 
-    private fun replaceFragment(fragment : Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fcv_main,fragment)
-        fragmentTransaction.commit()
-    }
     private fun click() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             item -> when (item.itemId) {
-                R.id.it_home -> supportFragmentManager.beginTransaction()
+                R.id.it_home ->
+                    supportFragmentManager.beginTransaction()
                     .replace(R.id.fcv_main, HomeFragment()).commit()
 
                 R.id.it_my_page -> supportFragmentManager.beginTransaction()
@@ -44,10 +41,8 @@ class MainActivity : AppCompatActivity() {
         }
         binding.mainFab.setOnClickListener{
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fcv_main, CreateFragment())
+                .replace(R.id.fcv_main, CreateFragment()).commit()
         }
-
-
     }
 }
 

@@ -41,8 +41,8 @@ class EditActivity : AppCompatActivity() {
                     Toast.makeText(this@EditActivity, "닉네임은 빈칸일 수 없습니다.", Toast.LENGTH_SHORT).show()
                 } else {
                     tvSecondName.text = etNickname.text.trim()
-                    val changeName = tvSecondName.text
-                    viewModel._currentName.postValue(changeName.toString())
+                    intent.putExtra("nickname",tvSecondName.text.toString())
+                    setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
             }
@@ -67,8 +67,6 @@ class EditActivity : AppCompatActivity() {
             etNickname.setText(nickname)
             makeEditEmpty()
             saveMyname()
-
-
         }
     }
 }
