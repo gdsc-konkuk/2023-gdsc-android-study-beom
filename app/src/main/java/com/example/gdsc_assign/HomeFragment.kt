@@ -1,17 +1,17 @@
 package com.example.gdsc_assign
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gdsc_assign.RoomData.AppDatabase
 import com.example.gdsc_assign.RoomData.ToDo
 import com.example.gdsc_assign.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+    private var todoDB: AppDatabase? = null
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: NameViewModel by activityViewModels()
     private var todolist: MutableList<ToDo> = mutableListOf(
@@ -23,11 +23,6 @@ class HomeFragment : Fragment() {
         ToDo("11월27일", "살아남기..!", false)
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initToDoData()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +30,9 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        todoDB = AppDatabase.getInstance(requireContext())
         initToDoList()
+        initToDoData()
         return binding.root
     }
 
@@ -53,15 +50,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun initToDoData() {
-        val todoDb = AppDatabase.getInstance(requireContext())
-
         val r = Runnable {
-            if (todoDb?.ToDoDao()?.selectAll()?.isEmpty() == true) {
+            if (todoDB?.todoDao()?.selectAll()?.isEmpty() == true) {
                 todolist.map { item ->
-                    todoDb.ToDoDao().insert(item)
+                    todoDB!!.todoDao().insert(item)
                 }
             }
-            todolist = (todoDb?.ToDoDao()?.selectAll() as MutableList<ToDo>?)!!
+            todolist = (todoDB?.todoDao()?.selectAll() as MutableList<ToDo>?)!!
         }
 
         val thread = Thread(r)
