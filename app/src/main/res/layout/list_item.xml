@@ -19,7 +19,6 @@
             android:layout_width="15dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:background="@drawable/custom_checkbox"
             android:button="@color/white"
             android:checked="false"
             android:src="@drawable/ic_check_list"
