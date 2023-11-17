@@ -1,14 +1,12 @@
 package com.example.gdsc_assign
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gdsc_assign.RoomData.AppDatabase
-import com.example.gdsc_assign.RoomData.ToDo
 import com.example.gdsc_assign.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -22,11 +20,6 @@ class HomeFragment : Fragment() {
         ToDo("11월27일", "이슬톡톡 연마하기", false),
         ToDo("11월27일", "살아남기..!", false)
     )
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initToDoData()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,21 +45,6 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun initToDoData() {
-        val todoDb = AppDatabase.getInstance(requireContext())
-
-        val r = Runnable {
-            if (todoDb?.ToDoDao()?.selectAll()?.isEmpty() == true) {
-                todolist.map { item ->
-                    todoDb.ToDoDao().insert(item)
-                }
-            }
-            todolist = (todoDb?.ToDoDao()?.selectAll() as MutableList<ToDo>?)!!
-        }
-
-        val thread = Thread(r)
-        thread.start()
-    }
 
     private fun checkCompleteTodo(): Int {
         var a = 0

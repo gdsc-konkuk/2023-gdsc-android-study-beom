@@ -3,7 +3,6 @@ package com.example.gdsc_assign
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gdsc_assign.RoomData.ToDo
 import com.example.gdsc_assign.databinding.ListItemBinding
 
 class ToDoAdaptor(private var todos: MutableList<ToDo>) :
