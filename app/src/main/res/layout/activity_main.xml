@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--coordinate쓰지말고 fragment container 사용-->
+<?xml version="1.0" encoding="utf-8"?><!--coordinate쓰지말고 fragment container 사용-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-        <data>
 
-        </data>
+    <data>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".presentation.Mainactivity">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.Mainactivity">
 
 
         <androidx.fragment.app.FragmentContainerView
@@ -25,17 +26,17 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
 
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:id="@+id/bottom_navigation_view"
-                app:labelVisibilityMode="labeled"
-                app:itemIconTint="@color/bottom_item_color"
-                app:itemTextColor="@color/bottom_item_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/my_navigation_item"/>
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:itemIconTint="@color/bottom_item_color"
+            app:itemTextColor="@color/bottom_item_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/my_navigation_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/main_fab"
@@ -51,5 +52,5 @@
             app:maxImageSize="40dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </layout>
+</layout>
 
