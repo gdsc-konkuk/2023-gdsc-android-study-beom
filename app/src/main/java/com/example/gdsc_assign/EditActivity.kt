@@ -5,16 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.View.OnFocusChangeListener
-
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.example.gdsc_assign.databinding.ActivityEditBinding
 
 class EditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditBinding
-    private val viewModel : NameViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
@@ -24,32 +19,34 @@ class EditActivity : AppCompatActivity() {
         backToMyPage()
     }
 
-    fun makeEditEmpty() {
+    private fun makeEditEmpty() {
         binding.apply {
-            etNickname.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            etNickname.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     etNickname.setText("")
                 }
-            })
+            }
         }
     }
 
-    fun saveMyname() {
+    private fun saveMyname() {
+
         binding.apply {
+            val nowhiteNickname = etNickname.text.trim()
             btnSave.setOnClickListener {
-                if (etNickname.text.trim().isEmpty()) {
+                if (nowhiteNickname.isEmpty()) {
                     Toast.makeText(this@EditActivity, "닉네임은 빈칸일 수 없습니다.", Toast.LENGTH_SHORT).show()
                 } else {
-                    tvSecondName.text = etNickname.text.trim()
-                    intent.putExtra("nickname",tvSecondName.text.toString())
-                    setResult(Activity.RESULT_OK,intent)
+                    tvSecondName.text = nowhiteNickname
+                    intent.putExtra("nickname", tvSecondName.text.toString())
+                    setResult(Activity.RESULT_OK, intent)
                     finish()
                 }
             }
         }
     }
 
-    fun backToMyPage() {
+    private fun backToMyPage() {
         binding.apply {
             ivBackButton2.setOnClickListener {
                 val intent = Intent()
@@ -60,7 +57,7 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    fun setMyname() {
+    private fun setMyname() {
         binding.apply {
             val nickname = intent.getStringExtra("nickname")
             tvSecondName.text = nickname

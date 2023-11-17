@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/it_home"
-        android:icon="@drawable/img_item_home"
         android:enabled="true"
-        app:showAsAction="withText"
-        android:title="홈"/>
+        android:icon="@drawable/img_item_home"
+        android:title="홈"
+        app:showAsAction="withText" />
     <item
         android:id="@+id/it_fab"
         android:enabled="false"
-        app:showAsAction="never"
-        android:title=""/>
+        android:title=""
+        app:showAsAction="never" />
     <item
         android:id="@+id/it_my_page"
-        android:icon="@drawable/img_item_person"
         android:enabled="true"
+        android:icon="@drawable/img_item_person"
         android:title="마이 페이지"
-        app:showAsAction="withText"/>
+        app:showAsAction="withText" />
 </menu>
